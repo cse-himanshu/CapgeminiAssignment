@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+
+	<div class="card p-4 shadow" style="width: 400px">
+		<h1 class="mb-3">Add Leave Request</h1>
+
+		<form th:action="@{/api/addleaverequest}" method="post">
+			<div class="mb-3">
+				<label>Employee:</label>
+				<select name="employeeId" class="form-select">
+					<option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label>Leave Type:</label>
+				<select name="leaveTypeId" class="form-select">
+					<option th:each="leaveType : ${leaveTypes}" th:value="${leaveType.id}" th:text="${leaveType.leaveName}"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label>Start Date:</label>
+				<input type="date" name="startDate" class="form-control" />
+			</div>
+			<div class="mb-3">
+				<label>End Date:</label>
+				<input type="date" name="endDate" class="form-control" />
+			</div>
+			<div class="mb-3">
+				<label>Status:</label>
+				<select name="status" class="form-select">
+					<option value="PENDING">Pending</option>
+					<option value="APPROVED">Approved</option>
+					<option value="REJECTED">Rejected</option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary w-100">Save</button>
+		</form>
+	</div>
+
+</body>
+</html>
